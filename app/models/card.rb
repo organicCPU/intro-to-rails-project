@@ -1,5 +1,7 @@
+# frozen_string_literal: true
+
 class Card < ApplicationRecord
-  belongs_to :artist
-  belongs_to :color
-  belongs_to :ruling
+  has_many :artist
+  has_many :color
+  has_many :ruling
 end
