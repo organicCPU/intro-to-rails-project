@@ -14,9 +14,9 @@ require 'json'
 # Reset database
 
 Ruling.destroy_all
+Card.destroy_all
 Color.destroy_all
 Artist.destroy_all
-Card.destroy_all
 
 # MTGJSON Additions
 
@@ -30,29 +30,36 @@ end
 
 # Faker Additions
 
-number_of_artists = rand(3..5)
-number_of_cards = rand(10..15)
-
 6.times do
   Color.create(
     name: Faker::Color.color_name
   )
 end
 
-number_of_artists.times do
+rand(3...5).times do
   artist = Artist.create(
     name: Faker::Name.unique.name
   )
 
-  number_of_cards.times do
-    artist.cards.build(
+  rand(3..15).times do
+    card = artist.cards.build(
       name: Faker::Name.unique.name,
       color_id: Color.order('RANDOM()').first.id,
-      convertedCost: 5,
-      power: 1,
-      toughness: 1,
-      rarity: 'super rare',
-      flavorText: 'lol'
-    ).save
+      convertedCost: rand(0...10),
+      power: rand(1...8),
+      toughness: rand(1...8),
+      rarity: Faker::Hipster.word,
+      flavorText: Faker::Hipster.sentence(word_count: 3, supplemental: true)
+    )
+
+    card.save
+
+    rand(0...2).times do
+      card.ruling.build(
+        description: Faker::Hipster.paragraph
+      ).save
+    end
   end
 end
+
+puts 'Database populated.'
