@@ -1,0 +1,29 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  artist: one
+  color: one
+  ruling: one
+  cost: MyString
+  convertedCost: 
+  name: MyString
+  effect: MyText
+  displayType: MyString
+  power: 
+  toughness: 
+  rarity: MyString
+  flavorText: MyText
+
+two:
+  artist: two
+  color: two
+  ruling: two
+  cost: MyString
+  convertedCost: 
+  name: MyString
+  effect: MyText
+  displayType: MyString
+  power: 
+  toughness: 
+  rarity: MyString
+  flavorText: MyText

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_10_08_132509) do
+ActiveRecord::Schema.define(version: 2019_10_08_140147) do
 
   create_table "artists", force: :cascade do |t|
     t.string "name"
@@ -18,4 +18,39 @@ ActiveRecord::Schema.define(version: 2019_10_08_132509) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "cards", force: :cascade do |t|
+    t.integer "artist_id", null: false
+    t.integer "color_id", null: false
+    t.integer "ruling_id", null: false
+    t.string "cost"
+    t.decimal "convertedCost"
+    t.string "name"
+    t.text "effect"
+    t.string "displayType"
+    t.decimal "power"
+    t.decimal "toughness"
+    t.string "rarity"
+    t.text "flavorText"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["artist_id"], name: "index_cards_on_artist_id"
+    t.index ["color_id"], name: "index_cards_on_color_id"
+    t.index ["ruling_id"], name: "index_cards_on_ruling_id"
+  end
+
+  create_table "colors", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "rulings", force: :cascade do |t|
+    t.text "description"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  add_foreign_key "cards", "artists"
+  add_foreign_key "cards", "colors"
+  add_foreign_key "cards", "rulings"
 end
