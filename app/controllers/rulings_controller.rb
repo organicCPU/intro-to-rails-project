@@ -1,0 +1,2 @@
+class RulingsController < ApplicationController
+end
