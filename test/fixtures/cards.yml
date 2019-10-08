@@ -3,7 +3,6 @@
 one:
   artist: one
   color: one
-  ruling: one
   cost: MyString
   convertedCost: 
   name: MyString
@@ -17,7 +16,6 @@ one:
 two:
   artist: two
   color: two
-  ruling: two
   cost: MyString
   convertedCost: 
   name: MyString

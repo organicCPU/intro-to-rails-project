@@ -1,3 +1,3 @@
 class Artist < ApplicationRecord
-  belongs_to :card
+  has_many :cards
 end
