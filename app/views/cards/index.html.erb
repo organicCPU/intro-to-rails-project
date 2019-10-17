@@ -1,0 +1,13 @@
+<section class="section">
+  <div class="container">
+    <h1 class="title">
+      Cards In Standard Format
+    </h1>
+    <% if @cards.empty? %>
+      <p>No cards.</p>
+    <% else %>
+      <%@cards.each do |card|%>
+      <h2><%= card.name %></h2>
+      <% end %>
+    <% end %>
+</section>
