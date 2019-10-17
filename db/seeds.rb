@@ -10,6 +10,7 @@
 
 require 'open-uri'
 require 'json'
+require 'csv'
 
 # Reset database
 
@@ -27,6 +28,14 @@ def fetch(url)
 end
 
 # cards = fetch(url)
+
+# CSV Additions
+
+CSV.foreach('db/colors.csv', headers: true) do |row|
+  Color.create(
+    name: row['color']
+  )
+end
 
 # Faker Additions
 
