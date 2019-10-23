@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_10_08_174542) do
+ActiveRecord::Schema.define(version: 2019_10_23_173440) do
 
   create_table "artists", force: :cascade do |t|
     t.string "name"
@@ -29,16 +29,16 @@ ActiveRecord::Schema.define(version: 2019_10_08_174542) do
 
   create_table "cards", force: :cascade do |t|
     t.integer "artist_id", null: false
-    t.integer "color_id", null: false
-    t.string "cost"
-    t.decimal "convertedCost"
+    t.text "flavor_text"
+    t.text "mana_cost"
+    t.integer "color_id"
+    t.integer "converted_mana_cost"
     t.string "name"
     t.text "effect"
-    t.string "displayType"
-    t.decimal "power"
-    t.decimal "toughness"
+    t.string "display_type"
+    t.integer "power"
+    t.integer "toughness"
     t.string "rarity"
-    t.text "flavorText"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["artist_id"], name: "index_cards_on_artist_id"

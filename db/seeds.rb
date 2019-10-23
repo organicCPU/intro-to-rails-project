@@ -8,44 +8,67 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-require 'open-uri'
+require 'net/http'
 require 'json'
 require 'csv'
 
-# Reset database
+def make_color
+  color_count = Color.count
+  color = rand(0..(color_count + 1))
 
+  if color > color_count
+    return nil
+  else
+    return Color.order('RANDOM()').first
+  end
+end
+
+puts 'Database destroyed. Rebuilding database.'
+
+# Reset database, starting with dependants first
+
+CardRuling.destroy_all
 Ruling.destroy_all
 Card.destroy_all
+
 Color.destroy_all
 Artist.destroy_all
-
 # MTGJSON Additions
 
-url = 'https://www.mtgjson.com/json/Standard.json'
+# url = 'https://www.mtgjson.com/json/Standard.json'
 
-def fetch(url)
-  JSON.parse(open(url).read)
-end
+# def fetch(url)
+# URI =
+# JSON.parse(open(url).read)
+# end
 
 # cards = fetch(url)
 
 # CSV Additions
 
-CSV.foreach('db/colors.csv', headers: true) do |row|
+CSV.foreach('db/csv/colors.csv', headers: true) do |row|
   Color.create(
     name: row['color']
   )
 end
 
+color_count = Color.count
+
 # Faker Additions
 
-6.times do
+faker_color_count = rand(1..3)
+
+faker_color_count.times do
   Color.create(
     name: Faker::Color.color_name
   )
 end
 
-rand(3...5).times do
+puts "Added #{Color.count} colors to the database: #{color_count} of them being from a CSV file, and #{faker_color_count} from faker."
+
+faker_artist_count = rand(3..5)
+
+faker_artist_count.times do
   artist = Artist.create(
     name: Faker::Name.unique.name
   )
@@ -53,22 +76,35 @@ rand(3...5).times do
   rand(3..15).times do
     card = artist.cards.build(
       name: Faker::Name.unique.name,
-      color_id: Color.order('RANDOM()').first.id,
-      convertedCost: rand(0...10),
+      color: make_color,
+      converted_mana_cost: rand(0...10),
+      display_type: Faker::Hipster.word.capitalize,
       power: rand(1...8),
       toughness: rand(1...8),
-      rarity: Faker::Hipster.word,
-      flavorText: Faker::Hipster.sentence(word_count: 3, supplemental: true)
+      rarity: Faker::Hipster.word.capitalize,
+      flavor_text: Faker::Hipster.sentence(word_count: 3, supplemental: true)
     )
 
     card.save
-
-    rand(0...2).times do
-      card.ruling.build(
-        description: Faker::Hipster.paragraph
-      ).save
-    end
   end
 end
 
+rand(0...15).times do
+  ruling = Ruling.new(
+    description: Faker::Hipster.unique.paragraph
+  )
+
+  ruling.save
+
+  rand(1...3).times do
+    CardRuling.create(
+      ruling: ruling,
+      card: Card.order('RANDOM()').first
+    )
+  end
+end
+
+puts "Added #{Artist.count} artists to the database: #{faker_artist_count} of them are from faker."
+puts "Added #{Ruling.count} rulings to the database."
+puts "Added #{Card.count} cards to the database."
 puts 'Database populated.'

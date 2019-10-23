@@ -2,26 +2,26 @@
 
 one:
   artist: one
+  flavor_text: MyText
+  mana_cost: MyText
   color: one
-  cost: MyString
-  convertedCost: 
+  converted_mana_cost: 1
   name: MyString
   effect: MyText
-  displayType: MyString
-  power: 
-  toughness: 
+  display_type: MyString
+  power: 1
+  toughness: 1
   rarity: MyString
-  flavorText: MyText
 
 two:
   artist: two
+  flavor_text: MyText
+  mana_cost: MyText
   color: two
-  cost: MyString
-  convertedCost: 
+  converted_mana_cost: 1
   name: MyString
   effect: MyText
-  displayType: MyString
-  power: 
-  toughness: 
+  display_type: MyString
+  power: 1
+  toughness: 1
   rarity: MyString
-  flavorText: MyText
