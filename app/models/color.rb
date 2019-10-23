@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
 class Color < ApplicationRecord
-  belongs_to :cards, optional: true
+  has_many :cards
+
+  validates :name, uniqueness: true
 end
