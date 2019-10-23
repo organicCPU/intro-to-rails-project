@@ -1,0 +1,14 @@
+<section class="section">
+  <div class="container">
+    <h1 class="title">
+      Card Rulings
+    </h1>
+    <% if @ruling.empty? %>
+      <p>There are no rulings.</p>
+    <% else %>
+      <% @ruling.each do |e|%>
+      <h2><%= link_to e.title, e %></h2>
+      <% end %>
+    <% end %>
+  </div>
+</section>

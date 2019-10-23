@@ -1,0 +1,25 @@
+<section class="section">
+  <div class="container">
+    <h1 class="title is-1 is-spaced">
+      <%= @ruling.title %>
+    </h1>
+     <div class="box">
+      <h2 class="title is-2 is-spaced">
+        Ruling
+      </h2>
+      <ul>
+          <li><%= @ruling.description %></li>
+      </ul>
+    </div>
+    <div class="box">
+      <h2 class="title is-2 is-spaced">
+        Card List
+      </h2>
+      <ul>
+        <% @ruling.cards.each do |card| %>
+          <li><%= link_to card.name, card %></li>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+</section>

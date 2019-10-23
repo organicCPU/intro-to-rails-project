@@ -1,0 +1,45 @@
+<section class="section">
+  <div class="container">
+    <h1 class="title is-1 is-spaced">
+      <%= @card.name %>
+    </h1>
+    <div class="box">
+      <h2 class="title is-2 is-spaced">
+        Stats
+      </h2>
+      <ul>
+        <li>Artist: <%= link_to @card.artist.name, @card.artist %></li>
+        <li>Element: <%= link_to @card.color.name.capitalize, @card.color %> </li>
+        <li>Converted Cost:
+          <%= @card.converted_mana_cost %>
+        </li>
+        <li>Type: <%= @card.display_type %></li>
+        <li>Stat Line: <%= @card.power %> / <%= @card.toughness %></li>
+        <% unless @card.effect.nil? %>
+          <li>Effect: <%= @card.effect %></li>
+        <% end %>
+      </ul>
+    </div>
+    <div class="box">
+      <h2 class="title is-2 is-spaced">
+        Flavor
+      </h2>
+      <ul>
+        <li>Rarity: <%= @card.rarity %></li>
+        <li>Flavor Text: <%= @card.flavor_text %></li>
+      </ul>
+    </div>
+    <% unless @card.rulings.empty? %>
+      <div class="box">
+        <h2 class="title is-2 is-spaced">
+          Rulings
+        </h2>
+        <ul>
+          <% @card.rulings.each do |rule|%>
+            <li><%= link_to rule.title, rule %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+  </div>
+</section>

@@ -1,0 +1,14 @@
+<section class="section">
+  <div class="container">
+    <h1 class="title">
+      Element Types
+    </h1>
+    <% if @color.empty? %>
+      <p>There are no elements.</p>
+    <% else %>
+      <% @color.each do |e|%>
+      <h2><%= link_to e.name.capitalize, e %></h2>
+      <% end %>
+    <% end %>
+  </div>
+</section>
