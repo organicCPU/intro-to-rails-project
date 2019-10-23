@@ -82,7 +82,7 @@ faker_artist_count.times do
       power: rand(1...8),
       toughness: rand(1...8),
       rarity: Faker::Hipster.word.capitalize,
-      flavor_text: Faker::Hipster.sentence(word_count: 3, supplemental: true)
+      flavor_text: Faker::Quote.famous_last_words
     )
 
     card.save
@@ -91,6 +91,7 @@ end
 
 rand(0...15).times do
   ruling = Ruling.new(
+    title: Faker::Music.unique.album,
     description: Faker::Hipster.unique.paragraph
   )
 
@@ -107,4 +108,5 @@ end
 puts "Added #{Artist.count} artists to the database: #{faker_artist_count} of them are from faker."
 puts "Added #{Ruling.count} rulings to the database."
 puts "Added #{Card.count} cards to the database."
+puts "Added #{CardRuling.count} card ruling associations to the database."
 puts 'Database populated.'
