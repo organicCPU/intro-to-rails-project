@@ -4,7 +4,11 @@ Rails.application.routes.draw do
   # get '/static', to: root_path
 
   resources :artists, only: %i[index show]
-  resources :cards, only: %i[index show]
+  resources :cards, only: %i[index show] do
+    collection do
+      get 'search'
+    end
+  end
   resources :colors, only: %i[index show]
   resources :rulings, only: %i[index show]
 

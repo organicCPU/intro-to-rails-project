@@ -1,0 +1,10 @@
+<p>
+  Your search for '<%= @query %>' returned <%= pluralize(@card.size, 'result') %>.
+</p>
+
+<div>
+  <% @card.each do |card|%>
+    <h2><%= link_to card.name, card %></h2>
+  <% end %>
+
+</div>

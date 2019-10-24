@@ -29,7 +29,14 @@
           <%= link_to 'Rulings', rulings_path, :class => "navbar-item" %>
         </div>
       </div>
-  </div>
+    </div>
+    <div class="navbar-right">
+      <%= form_with(url: search_cards_path, method: "get", local: true) do %>
+        <%= label_tag(:query, "Search cards:") %>
+        <%= text_field_tag(:query) %>
+        <%= submit_tag("Search") %>
+      <% end %>
+    </div>
   </div>
 </nav>
 

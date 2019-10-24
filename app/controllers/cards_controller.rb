@@ -8,4 +8,10 @@ class CardsController < ApplicationController
   def show
     @card = Card.find(params[:id])
   end
+
+  # GET /cards/search
+  def search
+    @query = params[:query]
+    @card = Card.where(name: @query)
+  end
 end
