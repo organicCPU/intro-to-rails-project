@@ -9,6 +9,7 @@
       <% @card.each do |card|%>
       <h2><%= link_to card.name, card %></h2>
       <% end %>
+      <%= paginate @card %>
     <% end %>
   </div>
 </section>

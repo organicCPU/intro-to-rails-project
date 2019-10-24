@@ -1,6 +1,6 @@
 class RulingsController < ApplicationController
   def index
-    @ruling = Ruling.all
+    @ruling = Ruling.page(params[:page])
   end
 
   def show

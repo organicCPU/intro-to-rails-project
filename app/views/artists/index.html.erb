@@ -1,0 +1,15 @@
+<section class="section">
+  <div class="container">
+    <h1 class="title">
+      Card Artists
+    </h1>
+    <% if @artist.empty? %>
+      <p>There are no artists.</p>
+    <% else %>
+      <% @artist.each do |artist|%>
+      <h2><%= link_to artist.name, artist %></h2>
+      <% end %>
+      <%= paginate @artist %>
+    <% end %>
+  </div>
+</section>
