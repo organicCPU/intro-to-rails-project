@@ -12,6 +12,6 @@ class CardsController < ApplicationController
   # GET /cards/search
   def search
     @query = params[:query]
-    @card = Card.where(name: @query)
+    @card = Card.where('name LIKE ?', "%#{@query}%")
   end
 end

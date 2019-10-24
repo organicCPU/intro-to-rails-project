@@ -1,10 +1,13 @@
-<p>
-  Your search for '<%= @query %>' returned <%= pluralize(@card.size, 'result') %>.
-</p>
-
-<div>
-  <% @card.each do |card|%>
-    <h2><%= link_to card.name, card %></h2>
-  <% end %>
-
-</div>
+<section class="section">
+  <div class="container">
+    <h1 class="title">
+      Search Results
+    </h1>
+    <p>
+      Your search for '<%= @query %>' returned <%= pluralize(@card.size, 'result') %>.
+    </p>
+    <% @card.each do |card|%>
+      <h2><%= link_to card.name, card %></h2>
+    <% end %>
+  </div>
+</section>
