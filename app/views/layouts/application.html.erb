@@ -11,7 +11,7 @@
   </head>
 
 <nav class="navbar" role="navigation" aria-label="main navigation">
-  <div id="navbar" class="navbar-menu">
+  <div id="navbar" class="navbar-menu is-active">
     <div class="navbar-start">
       <%= link_to 'MTGJSON Project', root_path, :class => "navbar-item" %>
 
@@ -30,11 +30,11 @@
         </div>
       </div>
     </div>
-    <div class="navbar-right">
-      <%= form_with(url: search_cards_path, method: "get", local: true) do %>
-        <%= label_tag(:query, "Search cards:") %>
-        <%= text_field_tag(:query) %>
-        <%= submit_tag("Search") %>
+
+    <div class="navbar-end">
+      <%= form_with(url: search_cards_path, method: "get", local: true, class: "navbar-item") do %>
+        <%= text_field_tag(:query, nil, class: "input", placeholder: "Search Cards") %>
+        <%= submit_tag("Search", :class => "button is-primary") %>
       <% end %>
     </div>
   </div>
