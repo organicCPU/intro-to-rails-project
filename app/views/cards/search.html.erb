@@ -4,10 +4,13 @@
       Search Results
     </h1>
     <p>
-      Your search for '<%= @query %>' returned <%= pluralize(@card.size, 'result') %>.
+      Your search for '<%= @query %>' returned <%= pluralize(@all_cards.size, 'result') %>.
     </p>
     <% @card.each do |card|%>
       <h2><%= link_to card.name, card %></h2>
+    <% end %>
+    <% if @all_cards.size > 0 %>
+    <%= paginate @card %>
     <% end %>
   </div>
 </section>
