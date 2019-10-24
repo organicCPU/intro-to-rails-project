@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
     <title>MTGJSON Project</title>
     <%= csrf_meta_tags %>
@@ -10,30 +10,32 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
   </head>
 
-  <header class="header">
-    <div class="container">
-      <nav class="level">
-        <div class="level-left">
-          <div class="level-item">
-            My App
-          </div>
+<nav class="navbar" role="navigation" aria-label="main navigation">
+  <div id="navbar" class="navbar-menu">
+    <div class="navbar-start">
+      <%= link_to 'MTGJSON Project', root_path, :class => "navbar-item" %>
+
+      <%= link_to 'About', root_path, :class => "navbar-item" %>
+
+      <div class="navbar-item has-dropdown is-hoverable">
+        <a class="navbar-link">
+          Data
+        </a>
+
+        <div class="navbar-dropdown">
+          <%= link_to 'Card', cards_path, :class => "navbar-item" %>
+          <%= link_to 'Element Types', colors_path, :class => "navbar-item" %>
+          <%= link_to 'Artists', artists_path, :class => "navbar-item" %>
+          <%= link_to 'Rulings', rulings_path, :class => "navbar-item" %>
         </div>
-        <div class="level-right">
-          <p class="level-item">
-            <%= link_to("Cards", cards_path, :class => "button is-dark is-outlined") %>
-          </p>
-        </div>
-      </nav>
-    </div>
-  </header>
+      </div>
+  </div>
+  </div>
+</nav>
+
   <section class="section">
     <div class="container">
       <%= yield %>
     </div>
   </section>
-  <footer class="footer">
-    <div class="container">
-      Copyright © 2019 MyApp. All rights reserved.
-    </div>
-  </footer>
 </html>

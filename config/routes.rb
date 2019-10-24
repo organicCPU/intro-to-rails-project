@@ -1,12 +1,13 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+  resources :pages, only: :show
+  get '/static/:permalink', to: 'pages#permalink', as: 'permalink'
 
-  resources :artists
-  resources :cards
-  resources :colors
-  resources :rulings
+  resources :artists, only: %i[index show]
+  resources :cards, only: %i[index show]
+  resources :colors, only: %i[index show]
+  resources :rulings, only: %i[index show]
 
   root to: 'cards#index'
 end

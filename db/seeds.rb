@@ -27,22 +27,36 @@ puts 'Database destroyed. Rebuilding database.'
 
 # Reset database, starting with dependants first
 
+Page.destroy_all
+Page.create(title: 'About Us', content: 'This is a project that implements some Magic: The Gathering models with real world data.', permalink: 'about')
+
 CardRuling.destroy_all
 Ruling.destroy_all
 Card.destroy_all
 
 Color.destroy_all
 Artist.destroy_all
+
 # MTGJSON Additions
 
-# url = 'https://www.mtgjson.com/json/Standard.json'
+url = 'https://www.mtgjson.com/json/Standard.json'
 
-# def fetch(url)
-# URI =
-# JSON.parse(open(url).read)
-# end
+def fetch(url)
+  response = Net::HTTP.get(URI(url))
+  JSON.parse(response)
+end
 
-# cards = fetch(url)
+## MTGJSON parsing into model format
+
+all_cards = fetch(url)
+
+all_cards.first.second do |expansion|
+  expansion['cards'].each do |card|
+    puts card.first
+  end
+end
+
+
 
 # CSV Additions
 
@@ -73,7 +87,7 @@ faker_artist_count.times do
     name: Faker::Name.unique.name
   )
 
-  rand(3..15).times do
+  rand(10..50).times do
     card = artist.cards.build(
       name: Faker::Name.unique.name,
       color: make_color,
