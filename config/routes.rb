@@ -2,7 +2,8 @@
 
 Rails.application.routes.draw do
   resources :pages, only: :show
-  get '/static/:permalink', to: 'pages#permalink', as: 'permalink'
+  get '/permalink', to: 'pages#permalink', as: 'permalink'
+  # get '/static', to: root_path
 
   resources :artists, only: %i[index show]
   resources :cards, only: %i[index show]
